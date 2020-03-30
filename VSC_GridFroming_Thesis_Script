@@ -2,7 +2,7 @@ clear all
 clc
 close all
 
-T_s=1e-3;%Increasing Ts makes simulation run faster, but it may increase the numerical error as well!
+T_s=1e-4;%Increasing Ts makes simulation run faster, but it may increase the numerical error as well!
 Tend=40;
 T_loss=Tend;
 T_load=20;
@@ -77,7 +77,7 @@ L2_pu=L1_pu;
 Rm_pu=10*347.82/m;
 Lm_pu=10*156.68/m;
 %% Virtual Impedance 
-R_v=R_f*33;
+R_v=R_f*1;
 L_v=2.5*L_f;
 
 %or
