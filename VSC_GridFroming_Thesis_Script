@@ -23,7 +23,7 @@ L_b=Z_b/w_ref;
 C_b=1/(w_ref*Z_b);
 
 % Medium voltage Zone
-V2_rms=1000;
+V2_rms=13800;
 I2_b=S_b/(sqrt(3)*V2_rms);
 Z2_b=(V2_rms^2)/S_b;
 L2_b=Z2_b/w_ref;
@@ -77,8 +77,8 @@ L2_pu=L1_pu;
 Rm_pu=10*347.82/m;
 Lm_pu=10*156.68/m;
 %% Virtual Impedance 
-R_v=R_f*1;
-L_v=2.5*L_f;
+R_v=1*10^-6;
+L_v=1*10^-6;
 
 %or
 R_vpu=0.1;
