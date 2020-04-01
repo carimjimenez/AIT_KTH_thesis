@@ -80,15 +80,16 @@ Lm_pu=10*156.68/m;
 % R_v=1*10^-6;
 % L_v=1*10^-6;
 
-XR=3;  % X/R ratio
-R_v=1*10^-5; %virtual resistance 
-L_v=(XR*R_v)/(2*pi*f_b);  %virtual inductance
+% XR=3;  % X/R ratio
+% R_v=1*10^-5; %virtual resistance 
+% L_v=(XR*R_v)/(2*pi*f_b);  %virtual inductance
 
 %or
-%R_vpu=0.1;  
-%L_vpu=0.3;
-%R_v=R_vpu*Z1_b;
-%L_v=L_vpu*L1_b;
+% by using the following values, the behaviour will not be adequate
+R_vpu=0.1;  
+L_vpu=0.3;
+R_v=R_vpu*Z1_b;
+L_v=L_vpu*L1_b;
 %% Control parameters
 
 %DC source and governor-turbine time constants
