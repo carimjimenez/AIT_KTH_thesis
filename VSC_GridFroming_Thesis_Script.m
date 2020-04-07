@@ -1,4 +1,4 @@
-%Grid-Forming VSC with droop control
+%Grid-Forming VSC with droop control strategy
 
 clear all
 clc
