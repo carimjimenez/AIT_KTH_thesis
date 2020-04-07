@@ -98,13 +98,14 @@ C_dc=0.008*(n);
 
 %Filter Parameters
 
-R_f=0.001/n;
-L_f=(1/n)*200*10^-6;
-C_f=n*300*10^-6;
+% R_f=0.001/n;
+% L_f=(1/n)*200*10^-6;
+% C_f=n*300*10^-6;
 
+%Migrate and L2EP Values
 R_f_pu=0.005;   % Low-pass filter resistance Rf [p.u.]
 L_f_pu=0.15;    % Low-pass filter inductance Lf [p.u.]
-C_f_pu=0.066;   % Low-pass filter capacitance Cf [p.u.]
+C_f_pu=0.096; %0.066;  % Low-pass filter capacitance Cf [p.u.]
 
 
 R_f=R_f_pu*Z1_b;  % Low-pass filter resistance Rf [Ohm]
@@ -166,8 +167,8 @@ droop_percentage=5;
 
 % Active power droop parameter 
 %m_p=(2*pi*0.5)/(S_b);
-%m_p=(50*(1.05)-  50*(0.95))/(2*S_b); 
-m_p=(50*(1.025)-  50*(0.975))/(2*S_b);
+%m_p=(50*(1.05)-  50*(0.95))/(n*VSC_Pn); 
+m_p=(50*(1.025)-  50*(0.975))/(n*VSC_Pn);
 %m_p=((10/100)*f_b)/(0.75*S_b);
 
 % grid-forming converter control----------------
