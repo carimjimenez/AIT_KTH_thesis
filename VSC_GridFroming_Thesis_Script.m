@@ -1,4 +1,4 @@
-%Grid-Forming VSC with droop control strategy
+%Grid-Forming VSC with droop control
 
 clear all
 clc
@@ -16,7 +16,7 @@ Tsc_on=20;    %Short-circuit time ON [s]
 
 Tsc_off=20.25;  %Short-circuit time OFF [s]
 
-T_en=T_load-0.5;%Enabling the DC source saturation after the initial synchronization
+T_en=T_load-0.5; %Enabling the DC source saturation after the initial synchronization
 
 T_ms=0.001;
 
@@ -206,6 +206,11 @@ Kp_i =0.738891;   %Proportional gain current control loop
 Ki_i =(1/n)*1.19; %Integral gain current control loop
 Kff_i = 1;
 Ti_i = Kp_i / Ki_i;
+
+%Saturation
+idppu=0.9;
+isatpu=1.5;
+K_dP=2.3*S_b;
 
 %% Network loading and set-points
 base=2.25; % base load
