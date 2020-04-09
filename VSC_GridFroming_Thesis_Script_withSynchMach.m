@@ -220,8 +220,22 @@ K_dP=2.3*S_b;
 % load_step=S_b*load_change; %disturbance in [W]
 
 
+
+%VSC(with Virtual Impedance) and Synchronous machine
+ base=0.75; % base load
+ load_change=0.5;% load disturbance
+ ps=base; %set-ponit in [p.u.]
+ pl=S_b*ps; %loads in [W]
+ load_step=S_b*load_change; %disturbance in [W]
+
+
+%VSC Virtual Impedance and current ref. limitation) and Synchronous machine
 base=0.75; % base load
+
 load_change=0.5;% load disturbance
-ps=base; %set-ponit in [p.u.]
+
+ps=base/2; %set-ponit in [p.u.]
+
 pl=S_b*ps; %loads in [W]
+
 load_step=S_b*load_change; %disturbance in [W]
