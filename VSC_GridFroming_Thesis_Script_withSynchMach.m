@@ -119,7 +119,7 @@ R_dc=(Vdc_n/(0.05*(S_b)/Vdc_n));
 %%  transformer parameters
 %LV/MV
 m=100;
-Pn=210* 1e6;%Nominal power and frequency  [ Pn(VA)
+Pn=210* 1e6;%Nominal power  Pn(VA)
 V2_rms=13800;     %Medium voltage side (v)
 
 R1_pu=1*0.00734/m;
@@ -213,6 +213,7 @@ isatpu=1.2;
 K_dP=2.3*S_b;
 
 %% Network loading and set-points
+
 % base=2.25; % base load
 % load_change=0.75;% load disturbance
 % ps=base/3; %set-ponit in [MW]
@@ -220,22 +221,30 @@ K_dP=2.3*S_b;
 % load_step=S_b*load_change; %disturbance in [W]
 
 
-
 %VSC(with Virtual Impedance) and Synchronous machine
- base=0.75; % base load
- load_change=0.5;% load disturbance
- ps=base; %set-ponit in [p.u.]
- pl=S_b*ps; %loads in [W]
- load_step=S_b*load_change; %disturbance in [W]
+Ptot_Load=1.3; % base load
+
+Pload_change=0.5;% load disturbance
+
+n_gen=2; %number of energy sources
+
+n_load= 1;  %number of loads
+
+ps=Ptot_Load/n_gen; %set-ponit for each Power Unit [p.u.]
+
+pl=S_b*(Ptot_Load/n_load); %loads in [W]
+
+load_step=S_b*Pload_change; %disturbance in [W]
+
 
 
 %VSC Virtual Impedance and current ref. limitation) and Synchronous machine
-base=0.75; % base load
-
-load_change=0.5;% load disturbance
-
-ps=base/2; %set-ponit in [p.u.]
-
-pl=S_b*ps; %loads in [W]
-
-load_step=S_b*load_change; %disturbance in [W]
+% base=0.75; % base load
+% 
+% load_change=0.5;% load disturbance
+% 
+% ps=base/2; %set-ponit in [p.u.]
+% 
+% pl=S_b*ps; %loads in [W]
+% 
+% load_step=S_b*load_change; %disturbance in [W]
