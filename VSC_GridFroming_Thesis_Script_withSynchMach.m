@@ -143,7 +143,7 @@ Lm_mh=500;  %Magnetization inductance  Lm (pu)
 % R_v=1*10^-6;
 % L_v=1*10^-6;
 
-XR=3;  % X/R ratio
+XR=5;  % X/R ratio
 R_v=1*10^-5; %virtual resistance 
 L_v=(XR*R_v)/(2*pi*f_b);  %virtual inductance
 
@@ -238,13 +238,18 @@ load_step=S_b*Pload_change; %disturbance in [W]
 
 
 
-%VSC Virtual Impedance and current ref. limitation) and Synchronous machine
-% base=0.75; % base load
+% %VSC (Virtual Impedance and CURRENT REFERENCE LIMITATION) and Synchronous machine
+% Ptot_Load=0.375; % base load MAX value to avoid instability and
+% oscillations
 % 
-% load_change=0.5;% load disturbance
+% Pload_change=0.5;% load disturbance
 % 
-% ps=base/2; %set-ponit in [p.u.]
+% n_gen=2; %number of energy sources
 % 
-% pl=S_b*ps; %loads in [W]
+% n_load= 1;  %number of loads
 % 
-% load_step=S_b*load_change; %disturbance in [W]
+% ps=Ptot_Load/n_gen; %set-ponit for each Power Unit [p.u.]
+% 
+% pl=S_b*(Ptot_Load/n_load); %loads in [W]
+% 
+% load_step=S_b*Pload_change; %disturbance in [W]
