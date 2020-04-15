@@ -221,20 +221,20 @@ K_dP=2.3*S_b;
 % load_step=S_b*load_change; %disturbance in [W]
 
 
-%VSC(with Virtual Impedance) and Synchronous machine
-Ptot_Load=1.3; % base load
-
-Pload_change=0.5;% load disturbance
-
-n_gen=2; %number of energy sources
-
-n_load= 1;  %number of loads
-
-ps=Ptot_Load/n_gen; %set-ponit for each Power Unit [p.u.]
-
-pl=S_b*(Ptot_Load/n_load); %loads in [W]
-
-load_step=S_b*Pload_change; %disturbance in [W]
+% %VSC(with Virtual Impedance) and Synchronous machine
+% Ptot_Load=1.3; % base load
+% 
+% Pload_change=0.5;% load disturbance
+% 
+% n_gen=2; %number of energy sources
+% 
+% n_load= 1;  %number of loads
+% 
+% ps=Ptot_Load/n_gen; %set-ponit for each Power Unit [p.u.]
+% 
+% pl=S_b*(Ptot_Load/n_load); %loads in [W]
+% 
+% load_step=S_b*Pload_change; %disturbance in [W]
 
 
 
@@ -253,3 +253,22 @@ load_step=S_b*Pload_change; %disturbance in [W]
 % pl=S_b*(Ptot_Load/n_load); %loads in [W]
 % 
 % load_step=S_b*Pload_change; %disturbance in [W]
+
+%VSC(with Virtual Impedance) and Synchronous machine  IEEE 9-BUS SYSTEM
+Ptot_Load=2.5; % base load (p.u.)
+
+Qtot_Load=0.8; % base load (p.u.)
+
+Pload_change=0.5;% load disturbance
+
+n_gen=3; %number of energy sources
+
+n_load= 3;  %number of loads
+
+ps=Ptot_Load/n_gen; %set-ponit for each Power Unit [p.u.]
+
+pl=S_b*(Ptot_Load/n_load); %loads in [W]
+
+ql=S_b*(Qtot_Load/n_load); %loads in [VAr]
+
+load_step=S_b*Pload_change; %disturbance in [W]
