@@ -231,20 +231,20 @@ K_dP=2.3*S_b;
 % load_step=S_b*load_change; %disturbance in [W]
 
 
-% %VSC(with Virtual Impedance) and Synchronous machine
-% Ptot_Load=1.3; % base load
-% 
-% Pload_change=0.5;% load disturbance
-% 
-% n_gen=2; %number of energy sources
-% 
-% n_load= 1;  %number of loads
-% 
-% ps=Ptot_Load/n_gen; %set-ponit for each Power Unit [p.u.]
-% 
-% pl=S_b*(Ptot_Load/n_load); %loads in [W]
-% 
-% load_step=S_b*Pload_change; %disturbance in [W]
+%VSC(with Virtual Impedance) and Synchronous machine
+Ptot_Load=1.3; % base load
+
+Pload_change=0.5;% load disturbance
+
+n_gen=2; %number of energy sources
+
+n_load= 1;  %number of loads
+
+ps=Ptot_Load/n_gen; %set-ponit for each Power Unit [p.u.]
+
+pl=S_b*(Ptot_Load/n_load); %loads in [W]
+
+load_step=S_b*Pload_change; %disturbance in [W]
 
 
 
