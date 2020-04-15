@@ -1,4 +1,4 @@
-%Grid-Forming VSC with droop control
+%% Grid-Forming VSC with droop control
 
 clear all
 clc
@@ -10,13 +10,23 @@ Tend=35;      %Endtime of the simulation  [s]
 
 T_loss=Tend;
 
-T_load=12;    %Load-step time [s]
+% Faults-Events times
 
-Tsc_on=20;    %Short-circuit time ON [s]
+T_conn=12;    %Load-step increase time [s]
 
-Tsc_off=20.25;  %Short-circuit time OFF [s]
+T_discon=28;    %Load-step increase time [s]
 
-T_en=T_load-0.5; %Enabling the DC source saturation after the initial synchronization
+%3-phase short-circuit
+Tsc_on=23;     %3ph Short-circuit time ON [s]
+
+Tsc_off=23.2; %3ph Short-circuit time OFF [s]
+
+%1-phase short-circuit
+T1sc_on=15;     %1ph Short-circuit time ON [s]
+
+T1sc_off=15.25; %1ph Short-circuit time OFF [s]
+
+T_en=T_conn-0.5; %Enabling the DC source saturation after the initial synchronization
 
 T_ms=0.001;
 
@@ -255,7 +265,7 @@ K_dP=2.3*S_b;
 % load_step=S_b*Pload_change; %disturbance in [W]
 
 %VSC(with Virtual Impedance) and Synchronous machine  IEEE 9-BUS SYSTEM
-Ptot_Load=2.5; % base load (p.u.)
+Ptot_Load=2.25; % base load (p.u.)
 
 Qtot_Load=0.8; % base load (p.u.)
 
