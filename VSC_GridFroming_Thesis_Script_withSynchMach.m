@@ -286,24 +286,24 @@ ql=S_b*(Qtot_Load/n_load); %loads in [VAr]
 
 load_step=S_b*Pload_change; %disturbance in [W]
 
-%% Load.mat Files
-
-load('IEEE9_2VSC.mat');
-
-load('IEEE9_VSC_VSC-VI.mat');
-figure(1)
-plot(Is_VSC(1,1:401226),Is_VSC(2,1:401226),'r',Is_VSC_VSC_VI(1,1:401207),Is_VSC_VSC_VI(2,1:401207),'b')
-legend('VSC Bus2','VSC Bus2 with VI in VSC 3','location','eastoutside')
-title('Switching Reference in the VSC #2')
-xlabel('t (s)')
-ylabel('Is (p.u.)')
-
-
-
-figure(2)
-plot(Is_VSC(1,1:401226),Is_VSC(3,1:401226),'k',Is_VSC_VSC_VI(1,1:401207),Is_VSC_VSC_VI(3,1:401207),'g')
-legend('VSC Bus3','VSC Bus3 with VI ','location','eastoutside')
-title('Switching Reference in the VSC #3')
-xlabel('t (s)')
-ylabel('Is (p.u.)')
-
+% %% Load.mat Files
+% 
+% load('IEEE9_2VSC.mat');
+% 
+% load('IEEE9_VSC_VSC-VI.mat');
+% figure(1)
+% plot(Is_VSC(1,1:401226),Is_VSC(2,1:401226),'r',Is_VSC_VSC_VI(1,1:401207),Is_VSC_VSC_VI(2,1:401207),'b')
+% legend('VSC Bus2','VSC Bus2 with VI in VSC 3','location','eastoutside')
+% title('Switching Reference in the VSC #2')
+% xlabel('t (s)')
+% ylabel('Is (p.u.)')
+% 
+% 
+% 
+% figure(2)
+% plot(Is_VSC(1,1:401226),Is_VSC(3,1:401226),'k',Is_VSC_VSC_VI(1,1:401207),Is_VSC_VSC_VI(3,1:401207),'g')
+% legend('VSC Bus3','VSC Bus3 with VI ','location','eastoutside')
+% title('Switching Reference in the VSC #3')
+% xlabel('t (s)')
+% ylabel('Is (p.u.)')
+% 
