@@ -11,5 +11,7 @@ VSC_VirtualImp_SyncMach  a VSC with an implemented Virtual impedance block  and 
 
 VSC_VirtualImp_CurrentLimit_SyncMach    a VSC with an implemented Virtual impedance block and current reference limitation  and a Synchronous machine. Uncomment Lines (251-265) in the script to run this file
 
-IEEE9_BUS_withVSC  an IEEE 9-bus system is modelled with a SM and two VSC-GF but one has an adittional Virtual Impedance block
-Uncomment Lines (267-285) in the script to run this file
+IEEE9_BUS_with2VSC  an IEEE 9-bus system is modelled with a SM and two VSC-GF. Uncomment Lines (267-285) in the script to run this file
+
+IEEE9_BUS_withVSC_VI an IEEE 9-bus system is modelled with a SM and two VSC-GF but one has an adittional Virtual Impedance block. Uncomment Lines (267-285) in the script to run this file
+
