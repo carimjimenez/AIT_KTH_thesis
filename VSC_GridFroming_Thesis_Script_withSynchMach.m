@@ -6,31 +6,35 @@ close all
 
 T_s=1e-4;     % Simulation time step [s]  Ts highers --> makes simulation run faster, but it may increase the numerical error
 
-Tend=35;      %Endtime of the simulation  [s]
-
-T_loss=Tend;
 
 % Faults-Events times
 
 T_conn=12;    %Load-step increase time [s]
-
-T_discon=28;    %Load-step increase time [s]
-
-%3-phase short-circuit
-Tsc_on=23;     %3ph Short-circuit time ON [s]
-
-Tsc_off=23.2; %3ph Short-circuit time OFF [s]
 
 %1-phase short-circuit
 T1sc_on=15;     %1ph Short-circuit time ON [s]
 
 T1sc_off=15.25; %1ph Short-circuit time OFF [s]
 
+%1-phase short-circuit
+Tsc_on=22;     %1ph Short-circuit time ON [s]
+
+Tsc_off=22.15; %1ph Short-circuit time OFF [s]
+
+
+%3-phase short-circuit
+T3sc_on=28;     %3ph Short-circuit time ON [s]
+
+T3sc_off=28.2; %3ph Short-circuit time OFF [s]
+
+T_discon=35;    %Loss of Load time [s]
+
 T_en=T_conn-0.5; %Enabling the DC source saturation after the initial synchronization
 
 T_ms=0.001;
 
-
+Tend=40;      %Endtime of the simulation  [s]
+T_loss=Tend;
 %% Basea values
 S_b=100*(10^6);  % Base Power (VA)
 
@@ -153,7 +157,7 @@ Lm_mh=500;  %Magnetization inductance  Lm (pu)
 % R_v=1*10^-6;
 % L_v=1*10^-6;
 
-XR=5;  % X/R ratio
+XR=3;  % X/R ratio
 R_v=1*10^-5; %virtual resistance 
 L_v=(XR*R_v)/(2*pi*f_b);  %virtual inductance
 
@@ -173,7 +177,7 @@ w_f=7.5; %cut-off frequency  (Hz)
 w_c=w_ref/4.95;
 
 %defining SM governer gain----------------------
-droop_percentage=5;
+droop_percentage=1;
 
 % Active power droop parameter 
 %m_p=(2*pi*0.5)/(S_b);
@@ -231,26 +235,8 @@ K_dP=2.3*S_b;
 % load_step=S_b*load_change; %disturbance in [W]
 
 
-%VSC(with Virtual Impedance) and Synchronous machine
-Ptot_Load=1.3; % base load
-
-Pload_change=0.5;% load disturbance
-
-n_gen=2; %number of energy sources
-
-n_load= 1;  %number of loads
-
-ps=Ptot_Load/n_gen; %set-ponit for each Power Unit [p.u.]
-
-pl=S_b*(Ptot_Load/n_load); %loads in [W]
-
-load_step=S_b*Pload_change; %disturbance in [W]
-
-
-
-% %VSC (Virtual Impedance and CURRENT REFERENCE LIMITATION) and Synchronous machine
-% Ptot_Load=0.375; % base load MAX value to avoid instability and
-% oscillations
+% %VSC(with Virtual Impedance) and Synchronous machine
+% Ptot_Load=1.3; % base load
 % 
 % Pload_change=0.5;% load disturbance
 % 
@@ -264,21 +250,60 @@ load_step=S_b*Pload_change; %disturbance in [W]
 % 
 % load_step=S_b*Pload_change; %disturbance in [W]
 
-% %VSC(with Virtual Impedance) and Synchronous machine  IEEE 9-BUS SYSTEM
-% Ptot_Load=2.25; % base load (p.u.)
-% 
-% Qtot_Load=0.8; % base load (p.u.)
+
+
+% %VSC (Virtual Impedance and CURRENT REFERENCE LIMITATION) and Synchronous machine
+% Ptot_Load=0.375; % base load MAX value to avoid instability and oscillations
 % 
 % Pload_change=0.5;% load disturbance
 % 
-% n_gen=3; %number of energy sources
+% n_gen=2; %number of energy sources
 % 
-% n_load= 3;  %number of loads
+% n_load= 1;  %number of loads
 % 
 % ps=Ptot_Load/n_gen; %set-ponit for each Power Unit [p.u.]
 % 
 % pl=S_b*(Ptot_Load/n_load); %loads in [W]
 % 
-% ql=S_b*(Qtot_Load/n_load); %loads in [VAr]
-% 
 % load_step=S_b*Pload_change; %disturbance in [W]
+
+%VSC(with Virtual Impedance) and Synchronous machine  IEEE 9-BUS SYSTEM
+Ptot_Load=2.25; % base load (p.u.)
+
+Qtot_Load=0.8; % base load (p.u.)
+
+Pload_change=0.5;% load disturbance
+
+n_gen=3; %number of energy sources
+
+n_load= 3;  %number of loads
+
+ps=Ptot_Load/n_gen; %set-ponit for each Power Unit [p.u.]
+
+pl=S_b*(Ptot_Load/n_load); %loads in [W]
+
+ql=S_b*(Qtot_Load/n_load); %loads in [VAr]
+
+load_step=S_b*Pload_change; %disturbance in [W]
+
+%% Load.mat Files
+
+load('IEEE9_2VSC.mat');
+
+load('IEEE9_VSC_VSC-VI.mat');
+figure(1)
+plot(Is_VSC(1,1:401226),Is_VSC(2,1:401226),'r',Is_VSC_VSC_VI(1,1:401207),Is_VSC_VSC_VI(2,1:401207),'b')
+legend('VSC Bus2','VSC Bus2 with VI in VSC 3','location','eastoutside')
+title('Switching Reference in the VSC #2')
+xlabel('t (s)')
+ylabel('Is (p.u.)')
+
+
+
+figure(2)
+plot(Is_VSC(1,1:401226),Is_VSC(3,1:401226),'k',Is_VSC_VSC_VI(1,1:401207),Is_VSC_VSC_VI(3,1:401207),'g')
+legend('VSC Bus3','VSC Bus3 with VI ','location','eastoutside')
+title('Switching Reference in the VSC #3')
+xlabel('t (s)')
+ylabel('Is (p.u.)')
+
