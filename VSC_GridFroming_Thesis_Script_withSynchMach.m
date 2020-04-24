@@ -4,6 +4,7 @@ clear all
 clc
 close all
 
+
 T_s=1e-4;     % Simulation time step [s]  Ts highers --> makes simulation run faster, but it may increase the numerical error
 
 
@@ -16,7 +17,7 @@ T1sc_on=15;     %1ph Short-circuit time ON [s]
 
 T1sc_off=15.25; %1ph Short-circuit time OFF [s]
 
-%1-phase short-circuit
+%phase-phase short-circuit
 Tsc_on=22;     %1ph Short-circuit time ON [s]
 
 Tsc_off=22.15; %1ph Short-circuit time OFF [s]
@@ -47,8 +48,8 @@ w_ref=2*pi*f_b;  %Base speed (rad/s)
 
 % High voltage Zone
 P_b=S_b;          %Base power (W)
-
 Q_b=S_b;
+
 V_b=V;            %Base voltage (V)
 
 I_b=S_b/(sqrt(3)*V_b); %Base current (A)
@@ -154,19 +155,42 @@ L2_mh=0.08 ;    %%inductance secondary side [p.u.]
 Rm_mh=500;  %Magnetization resistance  Rm (pu)
 Lm_mh=500;  %Magnetization inductance  Lm (pu)
 %% Virtual Impedance 
-% R_v=1*10^-6;
-% L_v=1*10^-6;
 
 XR=3;  % X/R ratio
-R_v=1*10^-5; %virtual resistance 
-L_v=(XR*R_v)/(2*pi*f_b);  %virtual inductance
+% %First proposed values
+% R_v=1*10^-5; %virtual resistance (Ohm)
+% L_v=(XR*R_v)/(2*pi*f_b);  %virtual inductance
 
-%or
-% by using the following values, the behaviour will not be adequate
-%R_vpu=0.1;  
-%L_vpu=0.3;
-%R_v=R_vpu*Z1_b;
-%L_v=L_vpu*L1_b;
+% %second proposed values
+% R_v_pu=0.0707; %[pu] 
+% L_v_pu=(XR*R_v_pu)/(2*pi*f_b);  %virtual inductance
+% 
+% R_v=R_v_pu*Z1_b; %virtual resistance 
+% L_v=L_v_pu*L1_b;  %virtual inductance
+
+
+% % %third proposed values
+% R_v_pu=0.1; %[pu] 
+% L_v_pu=(XR*R_v_pu)/(2*pi*f_b);  %virtual inductance
+% 
+% R_v=R_v_pu*Z1_b; %virtual resistance 
+% L_v=L_v_pu*L1_b;  %virtual inductance
+
+%fourth proposed values
+R_v_pu=0.8; %[pu] 
+L_v_pu=(XR*R_v_pu)/(2*pi*f_b);  %virtual inductance
+
+R_v=R_v_pu*Z1_b; %virtual resistance 
+L_v=L_v_pu*L1_b*40;  %virtual inductance
+
+% L_v=L_v_pu*L1_b;%*100;  %virtual inductance
+
+% %or
+% % % 
+% R_vpu=0.8;  
+% L_vpu=0.3;
+% R_v=R_vpu*Z1_b;
+% L_v=L_vpu*L1_b;
 %% Control parameters
 
 %DC source and governor-turbine time constants
@@ -175,6 +199,8 @@ tau_dc=0.05;tau_g=5;
 % Strategy
 w_f=7.5; %cut-off frequency  (Hz)
 w_c=w_ref/4.95;
+T1=0.109;
+T2=0.0182;
 
 %defining SM governer gain----------------------
 droop_percentage=1;
@@ -210,13 +236,13 @@ kp_v_ac=0.05;  %Proportional gain AC voltage control
 
 % Voltage loop
 Kp_v =0.52;  %Proportional gain voltage control loop
-Ki_v =(n)*1.161022; %Integral gain voltage control loop
+Ki_v =(n)*1.16;%1022; %Integral gain voltage control loop
 Kff_v = 1;
 Ti_v = Kp_v/Ki_v; 
 
 
 % Current loop
-Kp_i =0.738891;   %Proportional gain current control loop
+Kp_i =0.73;%8891;   %Proportional gain current control loop
 Ki_i =(1/n)*1.19; %Integral gain current control loop
 Kff_i = 1;
 Ti_i = Kp_i / Ki_i;
