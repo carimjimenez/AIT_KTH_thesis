@@ -191,6 +191,8 @@ L_v=L_v_pu*L1_b*40;  %virtual inductance
 % L_vpu=0.3;
 % R_v=R_vpu*Z1_b;
 % L_v=L_vpu*L1_b;
+I_n=1; %Nominal value current [pu] 
+Kp_VI=0.6716;%Proportional Gain of Virtual Impedance[PU]
 %% Control parameters
 
 %DC source and governor-turbine time constants
