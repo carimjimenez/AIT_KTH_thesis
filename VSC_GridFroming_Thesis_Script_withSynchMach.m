@@ -7,35 +7,62 @@ close all
 
 T_s=1e-4;     % Simulation time step [s]  Ts highers --> makes simulation run faster, but it may increase the numerical error
 
-
 % Faults-Events times
 
 T_conn=12;    %Load-step increase time [s]
 
 %1-phase short-circuit
-T1sc_on=15;     %1ph Short-circuit time ON [s]
+T1sc_on=18;     %1ph Short-circuit time ON [s]
 
-T1sc_off=15.25; %1ph Short-circuit time OFF [s]
+T1sc_off=18.15; %15.25; %1ph Short-circuit time OFF [s]
 
 %phase-phase short-circuit
-Tsc_on=22;     %1ph Short-circuit time ON [s]
+Tsc_on=26;     %1ph Short-circuit time ON [s]
 
-Tsc_off=22.15; %1ph Short-circuit time OFF [s]
+Tsc_off=26.15; %1ph Short-circuit time OFF [s]
 
 
 %3-phase short-circuit
-T3sc_on=28;     %3ph Short-circuit time ON [s]
+T3sc_on=34;     %3ph Short-circuit time ON [s]
 
-T3sc_off=28.2; %3ph Short-circuit time OFF [s]
+T3sc_off=34.2; %3ph Short-circuit time OFF [s]
 
-T_discon=35;    %Loss of Load time [s]
+T_discon=45;    %Loss of Load time [s]
 
 T_en=T_conn-0.5; %Enabling the DC source saturation after the initial synchronization
 
 T_ms=0.001;
 
-Tend=40;      %Endtime of the simulation  [s]
+Tend=50;      %Endtime of the simulation  [s]
 T_loss=Tend;
+% % Faults-Events times
+% 
+% T_conn=12;    %Load-step increase time [s]
+% 
+% %1-phase short-circuit
+% T1sc_on=15;     %1ph Short-circuit time ON [s]
+% 
+% T1sc_off=15.15;%15.25; %1ph Short-circuit time OFF [s]
+% 
+% %phase-phase short-circuit
+% Tsc_on=22;     %1ph Short-circuit time ON [s]
+% 
+% Tsc_off=22.15; %1ph Short-circuit time OFF [s]
+% 
+% 
+% %3-phase short-circuit
+% T3sc_on=28;     %3ph Short-circuit time ON [s]
+% 
+% T3sc_off=28.2; %3ph Short-circuit time OFF [s]
+% 
+% T_discon=35;    %Loss of Load time [s]
+% 
+% T_en=T_conn-0.5; %Enabling the DC source saturation after the initial synchronization
+% 
+% T_ms=0.001;
+% 
+% Tend=40;      %Endtime of the simulation  [s]
+% T_loss=Tend;
 %% Basea values
 S_b=100*(10^6);  % Base Power (VA)
 
@@ -251,7 +278,7 @@ Ti_i = Kp_i / Ki_i;
 
 %Saturation
 idppu=0.9;
-isatpu=1.2;
+isatpu=1.4;
 K_dP=2.3*S_b;
 
 %% Network loading and set-points
@@ -281,8 +308,8 @@ K_dP=2.3*S_b;
 
 
 % %VSC (Virtual Impedance and CURRENT REFERENCE LIMITATION) and Synchronous machine
-% Ptot_Load=0.375; % base load MAX value to avoid instability and oscillations
-% 
+% Ptot_Load=0.6; % base load MAX value to avoid instability and oscillations
+% Qtot_Load=0.2; % base load (p.u.)
 % Pload_change=0.5;% load disturbance
 % 
 % n_gen=2; %number of energy sources
@@ -292,6 +319,8 @@ K_dP=2.3*S_b;
 % ps=Ptot_Load/n_gen; %set-ponit for each Power Unit [p.u.]
 % 
 % pl=S_b*(Ptot_Load/n_load); %loads in [W]
+% 
+% ql=S_b*(Qtot_Load/n_load); %loads in [VAr]
 % 
 % load_step=S_b*Pload_change; %disturbance in [W]
 
@@ -334,4 +363,3 @@ load_step=S_b*Pload_change; %disturbance in [W]
 % title('Switching Reference in the VSC #3')
 % xlabel('t (s)')
 % ylabel('Is (p.u.)')
-% 
