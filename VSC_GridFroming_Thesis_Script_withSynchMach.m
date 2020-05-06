@@ -12,20 +12,20 @@ T_s=1e-4;     % Simulation time step [s]  Ts highers --> makes simulation run fa
 T_conn=12;    %Load-step increase time [s]
 
 %1-phase short-circuit
-T1sc_on=18;     %1ph Short-circuit time ON [s]
+T1sc_on=23;     %1ph Short-circuit time ON [s]
 
-T1sc_off=18.15; %15.25; %1ph Short-circuit time OFF [s]
+T1sc_off=23.15; %15.25; %1ph Short-circuit time OFF [s]
 
 %phase-phase short-circuit
-Tsc_on=26;     %1ph Short-circuit time ON [s]
+Tsc_on=31;     %1ph Short-circuit time ON [s]
 
-Tsc_off=26.15; %1ph Short-circuit time OFF [s]
+Tsc_off=31.15; %1ph Short-circuit time OFF [s]
 
 
 %3-phase short-circuit
-T3sc_on=34;     %3ph Short-circuit time ON [s]
+T3sc_on=40;     %3ph Short-circuit time ON [s]
 
-T3sc_off=34.2; %3ph Short-circuit time OFF [s]
+T3sc_off=40.2; %3ph Short-circuit time OFF [s]
 
 T_discon=45;    %Loss of Load time [s]
 
@@ -33,36 +33,8 @@ T_en=T_conn-0.5; %Enabling the DC source saturation after the initial synchroniz
 
 T_ms=0.001;
 
-Tend=50;      %Endtime of the simulation  [s]
+Tend=55;      %Endtime of the simulation  [s]
 T_loss=Tend;
-% % Faults-Events times
-% 
-% T_conn=12;    %Load-step increase time [s]
-% 
-% %1-phase short-circuit
-% T1sc_on=15;     %1ph Short-circuit time ON [s]
-% 
-% T1sc_off=15.15;%15.25; %1ph Short-circuit time OFF [s]
-% 
-% %phase-phase short-circuit
-% Tsc_on=22;     %1ph Short-circuit time ON [s]
-% 
-% Tsc_off=22.15; %1ph Short-circuit time OFF [s]
-% 
-% 
-% %3-phase short-circuit
-% T3sc_on=28;     %3ph Short-circuit time ON [s]
-% 
-% T3sc_off=28.2; %3ph Short-circuit time OFF [s]
-% 
-% T_discon=35;    %Loss of Load time [s]
-% 
-% T_en=T_conn-0.5; %Enabling the DC source saturation after the initial synchronization
-% 
-% T_ms=0.001;
-% 
-% Tend=40;      %Endtime of the simulation  [s]
-% T_loss=Tend;
 %% Basea values
 S_b=100*(10^6);  % Base Power (VA)
 
@@ -160,7 +132,7 @@ R_dc=(Vdc_n/(0.05*(S_b)/Vdc_n));
 
 %%  transformer parameters
 %LV/MV
-m=100;
+m=100; %
 Pn=210* 1e6;%Nominal power  Pn(VA)
 V2_rms=13800;     %Medium voltage side (v)
 
@@ -204,11 +176,11 @@ XR=3;  % X/R ratio
 % L_v=L_v_pu*L1_b;  %virtual inductance
 
 %fourth proposed values
-R_v_pu=0.8; %[pu] 
+R_v_pu=1.5; %[pu] 
 L_v_pu=(XR*R_v_pu)/(2*pi*f_b);  %virtual inductance
 
 R_v=R_v_pu*Z1_b; %virtual resistance 
-L_v=L_v_pu*L1_b*40;  %virtual inductance
+L_v=L_v_pu*L1_b*100;  %virtual inductance
 
 % L_v=L_v_pu*L1_b;%*100;  %virtual inductance
 
@@ -218,12 +190,16 @@ L_v=L_v_pu*L1_b*40;  %virtual inductance
 % L_vpu=0.3;
 % R_v=R_vpu*Z1_b;
 % L_v=L_vpu*L1_b;
+I_threshold=1.2;
 I_n=1; %Nominal value current [pu] 
 Kp_VI=0.6716;%Proportional Gain of Virtual Impedance[PU]
 %% Control parameters
 
 %DC source and governor-turbine time constants
-tau_dc=0.05;tau_g=5;
+tau_dc=0.05;tau_g=0.5;
+%reduce it tau_g  0.5
+%time constant models turbine behavior, as they are slow  SM will be more
+%like a VSC
 
 % Strategy
 w_f=7.5; %cut-off frequency  (Hz)
@@ -363,3 +339,4 @@ load_step=S_b*Pload_change; %disturbance in [W]
 % title('Switching Reference in the VSC #3')
 % xlabel('t (s)')
 % ylabel('Is (p.u.)')
+% 
